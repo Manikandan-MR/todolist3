@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background:linear-gradient(45deg,white,rgb(240, 95, 95));
+        }
+        #container{
+            background-color: white;
+            max-width: 800px;
+            padding: 60px 80px 80px 80px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 2px grey;
+        }
+        #container h2{
+            margin-left: 70px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 25px;
+            font-weight: 700;
+        }
+        #inp{
+            border-radius: 5px;
+            height: 30px;
+            width: 250px;
+            padding-left: 10px;
+        }
+        button{
+            height: 35px;
+            width: 50px;
+            color: white;
+            background-color: rgb(209, 50, 50);
+            border: none;
+            border-radius:5px;
+            font-weight: 600;
+            margin-left: 10px;
+            box-shadow: 0 0 10px 2px grey;
+            cursor: pointer;
+        }
+        #ult{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+            height: 40px;
+            width: 97%;
+            margin: 10px 0px;
+            padding-left: 10px;
+            box-shadow: 0 0 10px 2px grey;
+        }
+        li button{
+            height: 30px;
+            width: 50px;
+            color: white;
+            background-color: rgb(226, 43, 43);
+            border: none;
+            border-radius:5px;
+            font-weight: 600;
+            margin-right: 10px;
+            box-shadow: 0 0 10px 2px grey;
+            cursor: pointer;
+        }
+        @media screen and (max-width:1000px){
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #container{
+                width: 200px;
+                height: 100px;
+                position: relative;
+                top: -100px;
+            }
+            #container h2{
+                position: relative;
+                top: -50px;
+                margin-left: 10px;
+            }
+            #push{
+                margin-top: 20px;
+            }
+            li{
+                position: relative;
+                margin: 20px 0px;
+                top: 120px;
+                left:-70px;
+                width: 330px;
+            }
+            form{
+                position: absolute;
+                top: 100px;
+                left: 20px;
+            }
+            #inp{
+                width:300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>To-do-List</h2>
+
+    <form>
+        <input type="text" placeholder="Enter a Task..!" id="inp">
+        <button id="push">Add</button>
+    </form>
+
+    <ul id="ult"></ul>
+    </div>
+</body>
+<script>
+    const inp=document.querySelector('#inp');
+    const form=document.querySelector('form');
+    const ult=document.querySelector('#ult');
+
+    form.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(inp.value.trim()!==''){
+            let li=document.createElement('li');
+            li.innerHTML=`<span>${inp.value}</span><button class='del-btn'>Delete</button>`;
+            ult.appendChild(li);
+            inp.value='';
+        }
+    })
+
+    ult.addEventListener('click',function(e){
+        if(e.target.classList.contains('del-btn')){
+            e.target.parentElement.remove();
+        }
+    })
+
+    const add=document.querySelector('#push');
+    add.onclick=function(){
+        if(inp.value.length==0){
+            alert('Fill out the Field...!')
+        }
+    }
+</script>
+</html>
